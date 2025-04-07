@@ -1,42 +1,50 @@
 package PCCP_test;
 import java.util.*;
 public class Solution_01 {
+    //외톨이 문자 구하기
+
+    public String solution(String input) {
+
+        if (input == null || input.isEmpty() || input.length() > 2600) {
+            return "N";
+        }
+
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c < 'a' || c > 'z') {
+                return "N";
+            }
+        }
+
+        int[] blockCount = new int[26];
+        char prev = input.charAt(0);
+        blockCount[prev - 'a']++;
+
+        for (int i = 1; i < input.length(); i++) {
+            char current = input.charAt(i);
+            if (current != prev) {
+                blockCount[current - 'a']++;
+            }
+            prev = current;
+        }
+
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < 26; i++) {
+            if (blockCount[i] >= 2) {
+                result.append((char) (i + 'a'));
+            }
+        }
+
+        return result.isEmpty() ? "N" : result.toString();
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String answer = scanner.nextLine();
-        String[] nums = new String[24];
-        boolean flag = false;
-        char temp;
+        String input = scanner.nextLine();
 
-        //조건 검사
-        if(answer.isEmpty() || answer.length()>2600){
-            System.exit(1);
-        }
-        for(int i=0; i<answer.length(); i++){
-            if(answer.charAt(i)>'a' && answer.charAt(i)<'z') {
-                continue;
-            }else{
-                System.exit(1);
-            }
-        }
+        Solution_01 sol = new Solution_01();
+        String result = sol.solution(input);
 
-        //외톨이 문자탐색
-        temp = answer.charAt(0);
-        for(int i=1 ; i<answer.length() ; i++){
-            if(temp == answer.charAt(i)) {
-                flag = false;
-            }else{
-                flag = true;
-            }
-            temp = answer.charAt(i);
-            if(flag){
-                nums[i-1] = answer;
-            }
-        }
-
-        for(int i=0 ; i<nums.length ; i++){
-            System.out.print(nums[i] + " ");
-        }
-
+        System.out.println(result);
     }
 }
