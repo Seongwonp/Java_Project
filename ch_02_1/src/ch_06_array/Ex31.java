@@ -40,17 +40,80 @@ public class Ex31 {
          */
         Scanner scanner = new Scanner(System.in);
         Random rand = new Random();
+        int count =0;
         int[] Com_rockScissorsPaper = new int[5];
         for(int i = 0; i < Com_rockScissorsPaper.length; i++){
             Com_rockScissorsPaper[i] = rand.nextInt(3)+1;
         }
-        while(true){
+        for(int i = 0; i < 5; i++){
             System.out.print("가위(1), 바위(2), 보(3)중 하나를 입력해 주십시요.");
             int input = scanner.nextInt();
             int computer = Com_rockScissorsPaper[rand.nextInt(Com_rockScissorsPaper.length)];
             if(input == 1){
-
+                    switch(computer){
+                        case 1:
+                            System.out.print(count + "/ 5 ");
+                            System.out.println("컴은 가위입니다.비겼습니다.");
+                            i--;
+                            break;
+                        case 2:
+                            System.out.print(count + "/ 5 ");
+                            System.out.println("컴은 바위입니다.졌습니다.");
+                            break;
+                        case 3:
+                            count++;
+                            System.out.print(count + "/ 5 ");
+                            System.out.println("컴은 보입니다. 이겼습니다.");
+                            break;
+                    }
+            }
+            else if(input == 2){
+                switch(computer){
+                    case 1:
+                        count++;
+                        System.out.print(count + "/ 5 ");
+                        System.out.println("컴은 가위입니다.이겼습니다.");
+                        break;
+                    case 2:
+                        System.out.print(count + "/ 5 ");
+                        System.out.println("컴은 바위입니다.비겼습니다.");
+                        i--;
+                        break;
+                    case 3:
+                        System.out.print(count + "/ 5 ");
+                        System.out.println("컴은 보입니다. 졌습니다.");
             }
         }
+            else if(input == 3){
+                switch(computer){
+                    case 1:
+                        System.out.print(count + "/ 5 ");
+                        System.out.println("컴은 가위입니다.졌습니다.");
+                        break;
+                    case 2:
+                        count++;
+                        System.out.print(count + "/ 5 ");
+                        System.out.println("컴은 바위입니다.이겼습니다.");
+                        break;
+                    case 3:
+                        System.out.print(count + "/ 5 ");
+                        System.out.println("컴은 보입니다. 비겼습니다.");
+                        i--;
+                        break;
+                }
+            }
+            else{
+                System.out.println("Error 다시 입력하세요.");
+                i--;
+            }
+        }
+        if(count == 5){
+                System.out.println("사용자가 이겼습니다. 축하합니다.");
+        } else{
+            System.out.println("컴퓨터가 이겼습니다. 다음기회에...");
+        }
+        scanner.close();
+
+
     }
 }
