@@ -2,7 +2,6 @@ package project_Test.Test01;
 import java.util.*;
 
 public class Test {
-
     /*
     while문과 Scanner를 이용해서 키보드로 입력된 데이터로 계좌생성, 계좌목록, 예금, 출금, 조회, 종료 기능을 제공하는 코드를 완성하세요.
     아래의 사항을 지켜 작업을 하세요
@@ -18,32 +17,6 @@ public class Test {
 
     4) 모든 코드의 for문은 idx를 사용할 것.
 
-    5) 계좌 생성의 경우 createAccount() 메서드가 실행되도록 할 것.
-    계좌 생성을 위한 정보를 입력받고, Account 객체를 생성함.
-    허용 가능한 통장의 개수 (max)이상의 통장을 개설하려는 경우에는 에러메시지를 출력하고 객체 생성을 하지 않음.
-    반복문을 사용하지 말고 구현할 것.
-
-    6) 계좌목록의 경우 viewAccountList() 메서드가 실행되도록 할 것.
-    현재 개설된 전체 계좌 목록이 출력되도록 함.
-    반복문에서는 idx를 사용할 것.
-
-    7) 예금의 경우 deposit() 메서드가 실행되도록 할 것.
-    계좌번호와 입금액을 입력받고 해당 계좌번호의 잔액 증가 처리.
-    0원이나 마이너스 금액을 입금하고자 하면 에러메시지가 나오고, 증가 처리를 하지 않음.
-    해당 계좌번호가 없으면 에러메시지가 나옴.
-
-    8) 출금의 경우 withdraw() 메서드가 실행되도록 할 것.
-    계좌번호와 출금액을 입력받고 해당 계좌번호의 잔액 차감 처리.
-    0원이나 마이너스 금액을 출금하고자 하면 에러메시지가 나오고, 차감 처리를 하지 않음.
-    잔액보다 더 많은 금액을 출금하고자 하면 에러메시지가 나오고, 차감 처리를 하지 않음.
-    해당 계좌번호가 없으면 에러메시지가 나옴.
-
-    9) 조회의 경우 viewAccount() 메서드가 실행되도록 할 것.
-    계좌번호를 입력받고 해당 계좌번호의 정보를 보여줌.
-    해당 계좌번호가 없으면 에러메시지가 나옴.
-
-    10) 예금, 출금, 조회에서 해당 계좌번호를 찾는 코드는 따로 메서드화 시킴.
-    메서드 이름은 findAccount()으로 함.
      */
     private static final int max = 3; // 허용가능한 계좌 개수
     private static final Account[] accounts = new Account[max]; // 객체 배열
@@ -133,6 +106,7 @@ public class Test {
 
 
     private static Account findAccount(String ano){
+        /* 예금, 출금, 조회에서 해당 계좌번호를 찾는 코드는 따로 메서드화 시킴.*/
         for(int i=0; i<idx; i++){
             if(accounts[i].getAno().equals(ano)){
                 return accounts[i];
@@ -199,6 +173,10 @@ public class Test {
     }
 
     private static void viewAccount(){
+        /*
+            계좌번호를 입력받고 해당 계좌번호의 정보를 보여줌.
+            해당 계좌번호가 없으면 에러메시지가 나옴.
+         */
         System.out.print("계좌번호: ");
         String ano = scanner.next();
         Account account = findAccount(ano);
